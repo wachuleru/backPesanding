@@ -32,11 +32,19 @@ def room_state(room_id: str):
 
     users = {u: {"vote": info["vote"]} for u, info in r["users"].items()}
 
-    counts: Dict[int, int] = {}
+    counts: Dict[str, Any] = {}
+    pending = 0  # 👈 cantidad de usuarios sin voto
+
     for info in r["users"].values():
         v = info["vote"]
-        if v is not None:
+        if v is None:
+            pending += 1
+        else:
             counts[v] = counts.get(v, 0) + 1
+
+    # 👇 añadimos la clave especial dentro del mismo dict
+    counts["pending"] = pending
+
 
     return {
         "users": users,
