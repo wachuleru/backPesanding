@@ -14,7 +14,7 @@ print("🚀 BACKEND actualizado y preparado para Render")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Cambia a tu dominio si lo deseas
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
