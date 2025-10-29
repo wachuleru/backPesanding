@@ -155,6 +155,11 @@ async def websocket_endpoint(websocket: WebSocket):
 async def root():
     return {"status": "Backend running successfully 🚀"}
 
+@app.get("/health")
+async def health_check():
+    """Verifica si el backend está funcionando correctamente."""
+    return {"status": "ok", "message": "Backend operativo 🚀"}
+
 # === Lanzamiento local ===
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
